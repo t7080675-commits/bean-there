@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bean There — specialty-кофейня в Москве с обжаркой на месте и медленным утром.">
+  <meta property="og:title" content="Bean There — медленное утро в Москве">
+  <meta property="og:description" content="Обжариваем зерно на месте и оставляем время никуда не спешить.">
+  <meta name="theme-color" content="#171311">
+  <title>Bean There — медленное утро в Москве</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F6F1EA', ink: '#2A211C', terra: '#C1653B', moss: '#4A5D45', sand: '#E9DFD2', latte: '#DCC9B6'
+          },
+          fontFamily: { display: ['Fraunces', 'Georgia', 'serif'], sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: { soft: '0 18px 50px rgba(71, 48, 35, .10)', lift: '0 12px 28px rgba(71, 48, 35, .14)' }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { background: #F6F1EA; color: #2A211C; overflow-x: hidden; }
+    .section-reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .menu-panel { max-height: 0; opacity: 0; overflow: hidden; transform: translateY(-8px); transition: max-height .35s ease, opacity .25s ease, transform .35s ease; }
+    .menu-panel.is-open { max-height: 320px; opacity: 1; transform: translateY(0); }
+    .coffee-art { background: radial-gradient(circle at 50% 48%, #f2d9b6 0 18%, transparent 18.5%), radial-gradient(circle at 50% 58%, #a85131 0 28%, transparent 28.5%), linear-gradient(145deg, #506247 0 40%, #cf7045 40% 67%, #ead7bd 67%); }
+    .coffee-art::after { content: ''; position: absolute; width: 145%; height: 42%; left: -22%; bottom: -10%; background: #f6f1ea; border-radius: 50% 50% 0 0; transform: rotate(-8deg); }
+    .steam { animation: float 3.2s ease-in-out infinite; transform-origin: bottom; }
+    .steam:nth-child(2) { animation-delay: .6s; }
+    .steam:nth-child(3) { animation-delay: 1.2s; }
+    @keyframes float { 0%,100% { transform: translateY(5px); opacity: .25; } 50% { transform: translateY(-8px); opacity: .75; } }
+    .bean-orbit { animation: orbit 14s linear infinite; transform-origin: 50% 50%; }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    .arrow-icon { display: inline-block; transition: transform .25s ease; }
+    a:hover .arrow-icon { transform: translateX(4px); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .section-reveal { opacity: 1; transform: none; }
+    }
+
+    /* Visual direction: an evening coffee bar, with one consistent interaction language. */
+    body {
+      background: #171311;
+      color: #F6F1EA;
+      font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    }
+
+    header {
+      background: rgba(23, 19, 17, .94) !important;
+      box-shadow: 0 1px 0 rgba(246, 241, 234, .08);
+    }
+
+    .text-ink { color: #F6F1EA !important; }
+    .text-ink\/70 { color: rgba(246, 241, 234, .72) !important; }
+    .text-ink\/65 { color: rgba(246, 241, 234, .68) !important; }
+    .text-ink\/60 { color: rgba(246, 241, 234, .62) !important; }
+    .text-ink\/50 { color: rgba(246, 241, 234, .5) !important; }
+    .text-ink\/45 { color: rgba(246, 241, 234, .45) !important; }
+    .text-moss { color: #A9B99A !important; }
+    .bg-cream { background-color: #171311 !important; }
+    .bg-white\/65 { background-color: #2A211C !important; }
+    .bg-sand\/65 { background-color: #4A5D45 !important; }
+    .bg-sand { background-color: #2A211C !important; }
+    .bg-latte\/70 { background-color: #4A5D45 !important; }
+    .border-ink\/10 { border-color: rgba(246, 241, 234, .16) !important; }
+    .border-sand\/60 { border-color: rgba(246, 241, 234, .12) !important; }
+
+    .font-display {
+      font-family: Fraunces, Georgia, serif;
+      letter-spacing: -.035em;
+    }
+
+    nav a, footer a, #mobileMenu a,
+    .rounded-3xl,
+    .rounded-full {
+      transition: color .25s ease, background-color .25s ease, border-color .25s ease,
+        box-shadow .25s ease, transform .25s ease;
+    }
+
+    nav a:not(.bg-terra):hover,
+    footer a:hover,
+    #mobileMenu a:hover {
+      color: #E08A62 !important;
+    }
+
+    nav a:focus-visible,
+    footer a:focus-visible,
+    #mobileMenu a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #E08A62;
+      outline-offset: 4px;
+    }
+
+    article.rounded-3xl {
+      border: 1px solid rgba(246, 241, 234, .08);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
+    }
+
+    article.rounded-3xl:hover {
+      background-color: #3A2B24 !important;
+      border-color: rgba(193, 101, 59, .72);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, .28);
+      transform: translateY(-5px);
+    }
+
+    .bg-terra:hover {
+      background-color: #E08A62 !important;
+      box-shadow: 0 12px 32px rgba(193, 101, 59, .28);
+    }
+
+    .ring-1 {
+      --tw-ring-color: rgba(246, 241, 234, .35) !important;
+    }
+
+    a:not(.bg-terra):not([href="#"]):hover {
+      text-decoration: none;
+    }
+
+    #place > div {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+
+    #place .bg-ink {
+      background-color: #2A211C !important;
+    }
+
+    #mobileMenu {
+      background: #171311;
+    }
+
+    @media (max-width: 639px) {
+      h1 { font-size: 3.35rem !important; }
+      .coffee-art { border-radius: 24px; }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10" aria-label="Основная навигация">
+      <a href="#top" class="font-display text-2xl font-semibold tracking-tight text-ink" aria-label="Bean There — на главную">Bean <span class="text-terra">There</span><span class="text-moss">.</span></a>
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="#menu" class="text-sm font-medium text-ink/75 transition hover:text-terra">Меню</a>
+        <a href="#about" class="text-sm font-medium text-ink/75 transition hover:text-terra">О нас</a>
+        <a href="#reviews" class="text-sm font-medium text-ink/75 transition hover:text-terra">Отзывы</a>
+        <a href="#place" class="text-sm font-medium text-ink/75 transition hover:text-terra">Где мы</a>
+        <a href="#place" class="rounded-full bg-terra px-5 py-3 text-sm font-semibold text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-[#a95231]">Забронировать стол</a>
+      </div>
+      <button id="menuToggle" class="flex h-11 w-11 items-center justify-center rounded-full bg-sand text-ink md:hidden" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="sr-only">Меню</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="menu-panel border-t border-sand/60 md:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col px-5 pb-5 pt-2 sm:px-8">
+        <a href="#menu" class="rounded-xl px-3 py-3 text-sm font-medium">Меню</a><a href="#about" class="rounded-xl px-3 py-3 text-sm font-medium">О нас</a><a href="#reviews" class="rounded-xl px-3 py-3 text-sm font-medium">Отзывы</a><a href="#place" class="rounded-xl px-3 py-3 text-sm font-medium">Где мы</a>
+        <a href="#place" class="mt-2 rounded-full bg-terra px-5 py-3 text-center text-sm font-semibold text-white">Забронировать стол</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-2 lg:items-center lg:px-10 lg:pb-28 lg:pt-24" aria-labelledby="hero-title">
+      <div class="max-w-2xl">
+        <p class="mb-5 text-sm font-semibold uppercase tracking-[.22em] text-moss">Кофейня · Москва · 09:00—22:00</p>
+        <h1 id="hero-title" class="font-display text-5xl leading-[.98] tracking-[-.04em] text-ink sm:text-7xl">Медленное<br><span class="text-terra">утро</span> начинается<br>здесь.</h1>
+        <p class="mt-7 max-w-lg text-base leading-7 text-ink/70 sm:text-lg">Обжариваем зерно на месте, варим бережно и оставляем достаточно времени, чтобы никуда не спешить.</p>
+        <div class="mt-9 flex flex-wrap gap-3"><a href="#menu" class="rounded-full bg-terra px-6 py-3.5 text-sm font-semibold text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-[#a95231]">Посмотреть меню</a><a href="#about" class="rounded-full bg-transparent px-6 py-3.5 text-sm font-semibold text-ink ring-1 ring-ink/20 transition hover:bg-white/50">Узнать о нас <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="hero-illustration relative mx-auto h-[360px] w-full max-w-[520px] sm:h-[450px]" aria-label="Декоративная иллюстрация чашки кофе" role="img">
+        <div class="absolute inset-4 rotate-3 rounded-[34px] bg-latte/70"></div><div class="coffee-art absolute inset-0 overflow-hidden rounded-[34px] shadow-soft"><svg class="absolute inset-0 z-10 h-full w-full" viewBox="0 0 520 450" fill="none" aria-hidden="true"><circle class="bean-orbit" cx="260" cy="225" r="166" stroke="#F6F1EA" stroke-opacity=".34" stroke-width="1" stroke-dasharray="3 11"/><path d="M174 260c0-40 34-72 76-72s76 32 76 72v34c0 17-14 31-31 31H205c-17 0-31-14-31-31v-34Z" fill="#F6F1EA" fill-opacity=".94"/><path d="M326 267h17c18 0 32 14 32 32s-14 32-32 32h-19" stroke="#F6F1EA" stroke-width="12" stroke-linecap="round"/><path d="M189 277h142" stroke="#C1653B" stroke-width="5" stroke-linecap="round"/><path d="M212 228c15-18 33-24 48-24 16 0 34 6 48 24" stroke="#C1653B" stroke-width="8" stroke-linecap="round"/><path d="M232 170c-12-19 13-28 1-49M275 170c-12-19 13-28 1-49" stroke="#F6F1EA" stroke-opacity=".75" stroke-width="4" stroke-linecap="round"/></svg><div class="absolute left-[16%] top-[15%] z-10 flex gap-8"><span class="steam h-20 w-3 rounded-full bg-cream/60 blur-sm"></span><span class="steam h-28 w-3 rounded-full bg-cream/70 blur-sm"></span><span class="steam h-16 w-3 rounded-full bg-cream/50 blur-sm"></span></div><div class="absolute bottom-[17%] left-[14%] z-10 rounded-full bg-ink/10 px-4 py-2 text-xs font-semibold uppercase tracking-[.2em] text-ink/60">roasted here</div></div>
+        <div class="absolute -bottom-5 -right-2 z-20 rounded-2xl bg-moss px-5 py-4 text-sm font-medium text-cream shadow-lift sm:-right-5"><span class="block font-display text-2xl">01</span>зерно с маленьких ферм</div>
+      </div>
+    </section>
+
+    <section id="menu" class="section-reveal mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28" aria-labelledby="menu-title">
+      <div class="mb-10 flex items-end justify-between gap-5"><div><p class="mb-3 text-sm font-semibold uppercase tracking-[.2em] text-terra">Что в чашке</p><h2 id="menu-title" class="font-display text-4xl tracking-tight sm:text-5xl">Меню на сегодня</h2></div><span class="hidden text-sm text-ink/50 sm:block">01 / 06</span></div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-terra" aria-hidden="true">●</span><span class="text-sm text-ink/50">от 320 ₽</span></div><div class="mb-3 flex items-center justify-between gap-3"><h3 class="font-display text-2xl">Фильтр дня</h3><span class="rounded-full bg-terra/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-terra">slow brew</span></div><p class="mt-2 text-sm leading-6 text-ink/60">Чистый, фруктовый, всегда немного другой.</p></article>
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-moss" aria-hidden="true">◒</span><span class="text-sm text-ink/50">от 280 ₽</span></div><div class="mb-3 flex items-center justify-between gap-3"><h3 class="font-display text-2xl">Флэт уайт</h3><span class="rounded-full bg-moss/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-moss">classic</span></div><p class="mt-2 text-sm leading-6 text-ink/60">Плотный эспрессо и шёлковое молоко.</p></article>
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-terra" aria-hidden="true">✦</span><span class="text-sm text-ink/50">от 350 ₽</span></div><div class="mb-3 flex items-center justify-between gap-3"><h3 class="font-display text-2xl">Каскара-тоник</h3><span class="rounded-full bg-terra/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-terra">seasonal</span></div><p class="mt-2 text-sm leading-6 text-ink/60">Яркая вишня, холодный тоник, лёд.</p></article>
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-moss" aria-hidden="true">◌</span><span class="text-sm text-ink/50">от 330 ₽</span></div><h3 class="font-display text-2xl">Капучино</h3><p class="mt-2 text-sm leading-6 text-ink/60">Мягкий и сливочный, без лишнего.</p></article>
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-terra" aria-hidden="true">●</span><span class="text-sm text-ink/50">от 290 ₽</span></div><h3 class="font-display text-2xl">Эспрессо</h3><p class="mt-2 text-sm leading-6 text-ink/60">Короткий, сладкий, с горчинкой какао.</p></article>
+        <article class="rounded-3xl bg-white/65 p-6 shadow-soft transition hover:-translate-y-1"><div class="mb-10 flex justify-between"><span class="text-2xl text-moss" aria-hidden="true">☼</span><span class="text-sm text-ink/50">от 310 ₽</span></div><h3 class="font-display text-2xl">Матча-тоник</h3><p class="mt-2 text-sm leading-6 text-ink/60">Травянистая свежесть и бодрый старт.</p></article>
+      </div>
+    </section>
+
+    <section id="about" class="section-reveal mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28" aria-labelledby="about-title"><div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center"><div><p class="mb-3 text-sm font-semibold uppercase tracking-[.2em] text-moss">Немного контекста</p><h2 id="about-title" class="font-display text-4xl leading-tight tracking-tight sm:text-5xl">Кофе — это<br><span class="text-terra">пауза,</span> а не топливо.</h2><p class="mt-7 max-w-xl leading-7 text-ink/70">Bean There появился из любви к простым ритуалам. Мы знакомимся с фермерами, обжариваем небольшими партиями и не торопим ни вас, ни кофе. Здесь можно открыть ноутбук, встретить друга или просто смотреть в окно.</p><p class="mt-4 max-w-xl leading-7 text-ink/70">Берите любимый столик у окна — мы поставили розетки так, чтобы работа тоже чувствовала себя дома.</p></div><div class="relative overflow-hidden rounded-[28px] bg-moss p-8 text-cream shadow-soft sm:p-12"><div class="absolute -right-12 -top-12 h-40 w-40 rounded-full border-[18px] border-cream/10"></div><p class="relative mb-12 max-w-xs font-display text-3xl leading-tight">Маленькая ферма.<br>Большой вкус.</p><div class="relative grid grid-cols-3 gap-4"><div><strong class="counter block font-display text-4xl sm:text-5xl" data-target="2021">0</strong><span class="mt-2 block text-xs text-cream/65">открылись</span></div><div><strong class="counter block font-display text-4xl sm:text-5xl" data-target="12">0</strong><span class="mt-2 block text-xs text-cream/65">сортов зерна</span></div><div><strong class="counter block font-display text-4xl sm:text-5xl" data-target="180">0</strong><span class="mt-2 block text-xs text-cream/65">кг в месяц</span></div></div></div></div></section>
+
+    <section id="reviews" class="section-reveal mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28" aria-labelledby="reviews-title"><div class="mb-10"><p class="mb-3 text-sm font-semibold uppercase tracking-[.2em] text-terra">Слова гостей</p><h2 id="reviews-title" class="font-display text-4xl tracking-tight sm:text-5xl">Хорошо посидели</h2><p class="mt-3 text-sm text-ink/50">*Имена и отзывы — концепт проекта.</p></div><div class="grid gap-4 md:grid-cols-3"><article class="rounded-3xl bg-sand/65 p-6"><div class="mb-12 text-terra" aria-label="5 из 5 звёзд">★★★★★</div><blockquote class="font-display text-xl leading-7">«Наконец-то место, где не нужно оправдываться за то, что сидишь с ноутбуком весь день.»</blockquote><p class="mt-7 text-sm font-semibold">Лера М.</p><p class="text-xs text-ink/50">дизайнер</p></article><article class="rounded-3xl bg-white/65 p-6"><div class="mb-12 text-terra" aria-label="5 из 5 звёзд">★★★★★</div><blockquote class="font-display text-xl leading-7">«У фильтра вкус как у отпуска. Прихожу за чашкой, остаюсь до заката.»</blockquote><p class="mt-7 text-sm font-semibold">Артём К.</p><p class="text-xs text-ink/50">продакт-менеджер</p></article><article class="rounded-3xl bg-terra p-6 text-white"><div class="mb-12 text-[#f6d5c6]" aria-label="5 из 5 звёзд">★★★★★</div><blockquote class="font-display text-xl leading-7">«Тихо, тепло и бариста помнит, какой я люблю овсянку. Что ещё нужно?»</blockquote><p class="mt-7 text-sm font-semibold">Ника С.</p><p class="text-xs text-white/65">иллюстратор</p></article></div></section>
+
+    <section id="place" class="section-reveal mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-28" aria-labelledby="place-title"><div class="grid overflow-hidden rounded-[28px] bg-ink text-cream lg:grid-cols-2"><div class="p-8 sm:p-12 lg:p-16"><p class="mb-3 text-sm font-semibold uppercase tracking-[.2em] text-[#d88b69]">Заходите в гости</p><h2 id="place-title" class="font-display text-4xl leading-tight sm:text-5xl">Ваш новый<br>любимый угол.</h2><address class="mt-10 not-italic text-base leading-7 text-cream/70">ул. Остоженка, 24<br>Москва, 119034</address><p class="mt-5 text-base leading-7 text-cream/70">Каждый день · 09:00—22:00<br>Кухня работает до 21:30</p><a href="#" class="mt-8 inline-flex min-h-11 items-center rounded-full bg-cream px-6 py-3 text-sm font-semibold text-ink transition hover:bg-white">Построить маршрут <span class="ml-2" aria-hidden="true">↗</span></a></div><div class="relative min-h-[280px] bg-[#394937] p-8 sm:min-h-[360px]"><svg class="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 600 500" fill="none" aria-hidden="true"><path d="M-20 120C120 180 160 40 300 120S470 220 640 110M-20 300C100 220 190 390 330 280S490 220 640 350M180-20C230 120 160 210 270 520M440-20C390 150 500 240 390 520" stroke="#D9D0C1" stroke-width="2" stroke-dasharray="8 12"/><circle cx="303" cy="252" r="14" fill="#C1653B" stroke="#F6F1EA" stroke-width="5"/></svg><div class="absolute bottom-8 left-8 text-sm text-cream/60">Примерная карта района</div></div></div></section>
+  </main>
+
+  <footer class="mx-auto max-w-7xl px-5 pb-8 pt-8 sm:px-8 lg:px-10"><div class="flex flex-col justify-between gap-6 border-t border-ink/10 pt-8 sm:flex-row sm:items-end"><div><a href="#top" class="font-display text-2xl font-semibold">Bean <span class="text-terra">There</span><span class="text-moss">.</span></a><p class="mt-3 text-sm text-ink/50">Кофе, который никуда не торопится.</p></div><div class="flex flex-col gap-3 text-sm sm:items-end"><div class="flex gap-5"><a href="#" class="text-ink/65 transition hover:text-terra">Instagram</a><a href="#" class="text-ink/65 transition hover:text-terra">Telegram</a><a href="#" class="text-ink/65 transition hover:text-terra">VK</a></div><p class="text-xs text-ink/45">© 2024 Bean There · Concept project — выдуманный бренд</p></div></div></footer>
+
+  <script>
+    const toggle = document.querySelector('#menuToggle');
+    const mobileMenu = document.querySelector('#mobileMenu');
+    toggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    });
+    document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Открыть меню');
+    }));
+
+    const revealItems = document.querySelectorAll('.section-reveal');
+    const counters = document.querySelectorAll('.counter');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateCounters = () => counters.forEach(counter => {
+      const target = Number(counter.dataset.target);
+      if (reduceMotion) { counter.textContent = target; return; }
+      const start = performance.now(), duration = 1200;
+      const tick = now => { const progress = Math.min((now - start) / duration, 1); counter.textContent = Math.floor(progress * target).toLocaleString('ru-RU'); if (progress < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); if (entry.target.id === 'about') animateCounters(); observer.unobserve(entry.target); } }), { threshold: .16 });
+    revealItems.forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
